@@ -326,16 +326,15 @@ Run the risk model on an applicant's data.
 ```json
 {
   "age": 35,
-  "income": 60000,
-  "experience": 8,
-  "cur_job_years": 3,
+  "income": 75000,
+  "experience": 10,
+  "cur_job_years": 4,
   "current_house_yrs": 5,
-  "loan_amount": 20000,
   "marital_status": "married",
-  "house_ownership": "rented",
+  "house_ownership": "owned",
   "car_ownership": "yes",
-  "region": "North India",
-  "job_category": "Technology & IT"
+  "region": "South India",
+  "job_category": "Engineering"
 }
 ```
 
@@ -343,11 +342,15 @@ Run the risk model on an applicant's data.
 
 ```json
 {
-  "risk_score": 0.234,
-  "risk_flag": 0,
-  "prediction": "Approved"
+  "probability": 18.45,
+  "decision": "Approved"
 }
 ```
+
+| Field | Description |
+|---|---|
+| `probability` | Risk probability as a percentage (0–100). Higher means riskier. |
+| `decision` | AI decision: `Approved` (≤30%), `Pending` (30–80%), `Rejected` (≥80%) |
 
 Full interactive documentation is available at `/api/docs/` (Swagger UI).
 
