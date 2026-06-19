@@ -1,0 +1,1263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon Bank – About Us</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #0a5fa8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 62px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      position: relative;
+      width: 44px;
+      height: 38px;
+    }
+
+    .logo-arc {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 18px;
+      border: 3px solid white;
+      border-bottom: none;
+      border-radius: 18px 18px 0 0;
+    }
+
+    .logo-base {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    .logo-text {
+      color: white;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .navbar-links a.active,
+    .navbar-links a:hover {
+      border-bottom: 2px solid white;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0a5fa8 0%, #0d3f6e 100%);
+      padding: 80px 80px 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 4.5rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .hero-title {
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 600px;
+      margin-bottom: 20px;
+      text-align: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .hero-subtitle {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1.1rem;
+      max-width: 540px;
+      line-height: 1.7;
+      text-align: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: white;
+      padding: 40px 80px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0a5fa8;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 50px;
+      background: #e2e8f0;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 80px;
+    }
+
+    .section-alt {
+      background: white;
+    }
+
+    .section-tag {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0a5fa8;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a2b45;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .section-text {
+      font-size: 1rem;
+      color: #64748b;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* MISSION */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .mission-visual {
+      background: linear-gradient(135deg, #eaf1fb, #dbeafe);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .mission-visual svg {
+      width: 80px;
+      height: 80px;
+      color: #0a5fa8;
+      margin-bottom: 20px;
+    }
+
+    .mission-quote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #1a2b45;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .mission-author {
+      margin-top: 16px;
+      font-size: 0.88rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* VALUES */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .value-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 28px 24px;
+      border-left: 4px solid #0a5fa8;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      background: #eaf1fb;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .value-icon svg {
+      width: 22px;
+      height: 22px;
+      color: #0a5fa8;
+    }
+
+    .value-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a2b45;
+      margin-bottom: 8px;
+    }
+
+    .value-text {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .timeline-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0a5fa8;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .timeline-content {
+      padding-top: 8px;
+    }
+
+    .timeline-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0a5fa8;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a2b45;
+      margin-bottom: 4px;
+    }
+
+    .timeline-text {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /*how it works */
+
+    .section-alt-alt {
+      background: white;
+    }
+    .section-alt-alt {
+      padding: 60px 40px;
+    }
+    .section-alt-text {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+    }
+
+    .section-alt-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .section-alt-card {
+      padding: 60px 20px;
+      background: #b9dcff;
+    }
+
+    .section-img {
+      width: 60px;
+      height: 60px;
+    }
+    .section-img-title {
+      font-size: 0.88rem;
+    }
+    .section-img-text {
+      font-size: 0.75rem;
+    }
+
+    /* TEAM */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .team-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .team-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a2b45;
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 0.85rem;
+      color: #0a5fa8;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .team-bio {
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* RGPD BANNER */
+    .rgpd-banner {
+      background: linear-gradient(135deg, #0d3f6e, #0a5fa8);
+      padding: 60px 80px;
+      text-align: center;
+    }
+
+    .rgpd-banner h2 {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .rgpd-banner p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 32px auto;
+      line-height: 1.7;
+    }
+
+    .rgpd-pills {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .rgpd-pill {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: #f4f6f9;
+      padding: 80px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a2b45;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: #64748b;
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+
+    .btn-cta {
+      background: #0a5fa8;
+      color: white;
+      text-decoration: none;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-cta:hover {
+      background: #084d8a;
+    }
+
+    /* ===== RESPONSIVE — Mobile 480px ===== */
+    @media screen and (max-width: 480px) {
+
+      .hero {
+        padding: 60px 40px 80px 40px;
+        width: 100%;
+      }
+      .logo-text {
+        font-size: 1rem;
+      }
+      .navbar-links {
+        gap: 8px;
+      }
+      .navbar-links a {
+        font-size: 0.75rem;
+      }
+      .hero-tag {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+      }
+      .hero-title {
+        font-size: 1.5rem;
+      }
+      .stats-bar {
+        flex-direction: column;
+        gap: 24px;
+        padding: 40px 20px;
+      }
+      .stat-number {
+        font-size: 1.5rem;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+      }
+      .stat-divider {
+        display: none;
+      }
+      .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .section-tag {
+        font-size: 0.65rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .section-text {
+        font-size: 0.88rem;
+      }
+      .mission-quote {
+        font-size: 1rem;
+      }
+      .mission-author {
+        font-size: 0.75rem;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .timeline {
+        margin-top: 37px;
+      }
+      .value-card {
+        padding: 30px 20px;
+      }
+      .value-title {
+        font-size: 1rem;
+
+      }
+      .value-text {
+        font-size: 0.88rem;
+      }
+      .timeline-item {
+        gap: 16px;
+      }
+      .timeline-dot {
+        width: 38px;
+        height: 35px;
+        font-size: 0.88rem;
+      }
+      .timeline-year {
+        font-size: 0.9rem;
+      }
+      
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .team-card {
+        padding: 30px 20px;
+      }
+      .team-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+      }
+      .team-name {
+        font-size: 0.95rem;
+      }
+      .team-role {
+        font-size: 0.8rem;
+      }
+      .team-bio {
+        font-size: 0.75rem;
+      }
+      .rgpd-banner {
+        padding: 60px 40px;
+      }
+      .rgpd-banner h2 {
+        font-size: 1.5rem;
+      }
+      .rgpd-banner p {
+        font-size: 0.88rem;
+      }
+      .rgpd-pills {
+        gap: 12px;
+      }
+      .rgpd-pill {
+        font-size: 0.75rem;
+      }
+      .cta-section {
+        padding: 60px 40px;
+      }
+      .cta-section h2 {
+        font-size: 1.5rem;
+      }
+      .cta-section p {
+        font-size: 0.88rem;
+      }
+      .section-alt-alt {
+        
+        padding: 40px 20px;
+      }
+      .section-alt-card-grid {
+        padding: 60px 20px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .section-text {
+        font-size: 0.88rem;
+      }
+      .section-img {
+        width: 60px;
+        height: 60px;
+      }
+      .section-img-title {
+        font-size: 0.88rem;
+      }
+      .section-img-text {
+        font-size: 0.75rem;
+      }
+
+    }
+
+
+
+    /* ===== RESPONSIVE — Very small 360px ===== */
+    @media screen and (max-width: 360px) {
+
+      .hero {
+        padding: 40px 20px 60px 20px;
+        width: 100%;
+      }
+
+      .logo-text {
+        font-size: 0.9rem;
+      }
+
+      .navbar-links a {
+        font-size: 0.7rem;
+      }
+
+      .hero-tag {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+      }
+
+      .hero-title {
+        font-size: 1.3rem;
+      }
+      .stats-bar {
+        flex-direction: column;
+        gap: 22px;
+        padding: 30px 10px;
+      }
+      .stat-number {
+        font-size: 1.3rem;
+      }
+      .stat-label {
+        font-size: 0.65rem;
+      }
+      .stat-divider {
+        display: none;
+      }
+      .mission-grid {
+        grid-template-columns:1fr;
+        gap: 10px;
+      }
+      .section-tag {
+        font-size: 0.55rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+      .section-text {
+        font-size: 0.78rem;
+      }
+      .mission-quote {
+        font-size: 0.88rem;
+      }
+      .mission-author {
+        font-size: 0.65rem;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .timeline {
+        margin-top: 32px;
+      }
+      .value-card {
+        padding: 20px 16px;
+      }
+      .value-title {
+        font-size: 0.88rem;
+      }
+      .value-text {
+        font-size: 0.75rem;
+      }
+      .timeline-item {
+        gap: 16px;
+      }
+      .timeline-dot {
+        width: 32px;
+        height: 32px;
+        font-size: 0.65rem;
+      }
+      .timeline-year {
+        font-size: 0.65rem;
+      }
+      .section-alt-alt {
+        padding: 30px 16px;
+      }
+      .section-alt-card {
+        padding: 60px 20px;
+      }
+
+       .section-alt-card-grid {
+        padding: 30px 10px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+      .section-text {
+        font-size: 0.75rem;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .team-card {
+        padding: 20px 16px;
+      }
+      .team-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+      }
+      .team-name {
+        font-size: 0.88rem;
+      }
+      .team-role {
+        font-size: 0.8rem;
+      }
+      .team-bio {
+        font-size: 0.75rem;
+      }
+
+
+    }
+
+    @media screen and (max-width: 320px) {
+
+      .hero {
+        padding: 30px 16px 50px 16px;
+        width: 100%;
+      }
+
+      .logo-text {
+        font-size: 0.8rem;
+      }
+
+      .navbar-links a {
+        font-size: 0.6rem;
+      }
+
+      .hero-tag {
+        font-size: 0.65rem;
+        padding: 3px 10px;
+        
+      }
+
+      .hero-title {
+        font-size: 1.1rem;
+      }
+      .stats-bar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 5px;
+      }
+      .stat-number {
+        font-size: 1.1rem;
+      }
+      .stat-label {
+        font-size: 0.55rem;
+      }
+      .stat-divider {
+        display: none;
+      }
+      .mission-grid {
+        grid-template-columns:1fr;
+        gap: 5px;
+      }
+      .section-tag {
+        font-size: 0.45rem;
+      }
+      .section-title {
+        font-size: 1.1rem;
+      }
+      .section-text {
+        font-size: 0.68rem;
+      }
+      .mission-quote {
+        font-size: 0.78rem;
+      }
+      .mission-author {
+        font-size: 0.55rem;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .timeline {
+        margin-top: 22px;
+      }
+      .value-card {
+        padding: 10px 8px;
+      }
+      .value-title {
+        font-size: 0.88rem;
+      }
+      .value-text {
+        font-size: 0.75rem;
+      }
+      .timeline-item {
+        gap: 16px;
+      }
+      .timeline-dot {
+        width: 22px;
+        height: 22px;
+        font-size: 0.55rem;
+      }
+      .timeline-year {
+        font-size: 0.55rem;
+      }
+      .section-alt-alt {
+        
+        padding: 20px 10px;
+      }
+
+      .section-alt-card-grid {
+        padding: 20px 10px;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .section-title {
+        font-size: 1.1rem;
+      }
+      .section-text {
+        font-size: 0.55rem;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .team-card {
+        padding: 10px 8px;
+      }
+      .team-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+      }
+      .team-name {
+        font-size: 0.78rem;
+      }
+      .team-role {
+        font-size: 0.6rem;
+      }
+      .team-bio {
+        font-size: 0.65rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav role="navigation" class="navbar">
+    <a href="#" class="navbar-logo">
+      <div class="logo-icon">
+        <div class="logo-arc"></div>
+        <div class="logo-base"></div>
+      </div>
+      <span class="logo-text">Horizon Bank</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="{% url 'login' %}">Personal</a></li>
+
+      <li><a href="{% url 'about' %}" class="active">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">About Horizon Bank</div>
+    <h1 class="hero-title">Your Dreams Are Worth It.<br>We Make Them Happen.</h1>
+    <p class="hero-subtitle">
+      Whether you're buying your first home, starting a business, or simply reaching your next milestone —
+      Horizon Bank is here for you. Applying for a loan has never been easier, fairer, or more transparent.
+      Just a few steps, and our team takes care of the rest.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">2018</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">12,000+</div>
+      <div class="stat-label">Loan Applications Processed</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">98%</div>
+      <div class="stat-label">Client Satisfaction</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Human-Validated Decisions</div>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <section class="section section-alt">
+    <div class="mission-grid">
+      <div>
+        <div class="section-tag">Our Mission</div>
+        <h2 class="section-title">Making Credit Fair and Accessible for Everyone</h2>
+        <p class="section-text">
+          At Horizon Bank, we believe that access to credit should be based on facts, not bias.
+          Our platform combines advanced data analysis with the irreplaceable judgment of human analysts
+          to ensure every application receives a fair, transparent, and explainable decision.
+        </p>
+        <p class="section-text" style="margin-top: 16px;">
+          We are fully committed to the principles of the GDPR — particularly Article 22 —
+          which guarantees that no decision affecting a person is made solely by an automated system.
+          Every loan decision at Horizon Bank is validated by a certified risk analyst.
+        </p>
+      </div>
+      <div class="mission-visual">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944
+               a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591
+               3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622
+               0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <p class="mission-quote">
+          "Technology should serve people, not replace them. At Horizon Bank, every algorithm has a human behind it."
+        </p>
+        <p class="mission-author">— Thomas Mercier, Founder & CEO</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="section-tag">Our Values</div>
+    <h2 class="section-title">What We Stand For</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z
+                 M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7
+                 -1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </div>
+        <div class="value-title">Transparency</div>
+        <div class="value-text">Every decision comes with a clear explanation. No black boxes, no hidden criteria — our
+          clients always know why.</div>
+      </div>
+      <div class="value-card" style="border-color: #16a34a;">
+        <div class="value-icon" style="background: #f0fdf4;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: #16a34a;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+          </svg>
+        </div>
+        <div class="value-title">Fairness</div>
+        <div class="value-text">Our risk model is built to exclude sensitive variables. We assess financial behavior,
+          not personal identity.</div>
+      </div>
+      <div class="value-card" style="border-color: #a83255;">
+        <div class="value-icon" style="background: #fff7f9;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: #a83255;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <div class="value-title">Security</div>
+        <div class="value-text">Your data is protected under GDPR. We never sell personal data and apply strict security
+          standards across all systems.</div>
+      </div>
+      <div class="value-card" style="border-color: #d97706;">
+        <div class="value-icon" style="background: #fffbeb;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: #d97706;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <div class="value-title">Human Oversight</div>
+        <div class="value-text">Every loan decision is reviewed and validated by a certified risk analyst. Technology
+          assists — humans decide.</div>
+      </div>
+      <div class="value-card" style="border-color: #0891b2;">
+        <div class="value-icon" style="background: #ecfeff;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: #0891b2;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div class="value-title">Innovation</div>
+        <div class="value-text">We leverage state-of-the-art machine learning to improve accuracy while keeping
+          explainability at the core.</div>
+      </div>
+      <div class="value-card" style="border-color: #7c3aed;">
+        <div class="value-icon" style="background: #f5f3ff;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: #7c3aed;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <div class="value-title">Responsibility</div>
+        <div class="value-text">We take our social and environmental impact seriously — from our energy footprint to
+          inclusive credit access.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section section-alt">
+    <div class="section-tag">Our Story</div>
+    <h2 class="section-title">From Startup to Trusted Lender</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">18</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title">Horizon Bank Founded</div>
+          <div class="timeline-text">Thomas Mercier founded Horizon Bank in Paris with a vision to digitize and
+            democratize access to personal credit.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">20</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-title">First AI Risk Model Deployed</div>
+          <div class="timeline-text">Launch of our first machine learning scoring model — designed from the ground up to
+            be explainable and bias-free.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">22</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-title">GDPR Compliance Certification</div>
+          <div class="timeline-text">Horizon Bank received full GDPR Article 22 compliance certification, confirming our
+            commitment to human oversight in all credit decisions.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">24</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-title">10,000 Applications Milestone</div>
+          <div class="timeline-text">We crossed 10,000 loan applications processed — with a 98% client satisfaction rate
+            and zero discrimination incidents.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">26</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-title">Next Generation Platform</div>
+          <div class="timeline-text">Launch of our redesigned platform with an enhanced analyst dashboard, document
+            verification, and real-time client messaging.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+  <section class="section-alt-alt">
+    <div class="section-tag">Simple & Accessible</div>
+    <h2 class="section-title">Apply in Minutes, Not Days</h2>
+    <p class="section-text">
+      We designed our platform so that anyone — regardless of their background or technical knowledge —
+      can apply for a loan quickly, safely, and with complete peace of mind.
+    </p>
+    <div class="section-alt-card-grid" >
+      <div class="section-alt-card style="text-align:center; padding: 32px 24px; background:#f8fafc; border-radius:12px;">
+        <div class="section-img" style="font-size:2rem; margin-bottom:12px;">📝</div>
+        <div class="section-img-title" style="font-weight:700; color:#1a2b45; margin-bottom:8px;">1. Fill in your details</div>
+        <div class="section-img-text" style="font-size:0.88rem; color:#64748b; line-height:1.6;">A simple, guided form. No jargon, no complicated
+          documents — just the essential information.</div>
+      </div>
+      <div class="section-alt-card" >
+        <div class="section-img" style="font-size:2rem; margin-bottom:12px;">🔍</div>
+        <div class="section-img-title" style="font-weight:700; color:#1a2b45; margin-bottom:8px;">2. Our team reviews your file</div>
+        <div class="section-img-text" style="font-size:0.88rem; color:#64748b; line-height:1.6;">A certified analyst reviews every application
+          personally. No decision is made without a human expert.</div>
+      </div>
+      <div class="section-alt-card">
+        <div class="section-img" style="font-size:2rem; margin-bottom:12px;">✅</div>
+        <div class="section-img-title" style="font-weight:700; color:#1a2b45; margin-bottom:8px;">3. Get your answer</div>
+        <div class="section-img-text" style="font-size:0.88rem; color:#64748b; line-height:1.6;">You receive a clear, transparent decision — and
+          always know the next steps to take.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="section-tag">Our Team</div>
+    <h2 class="section-title">The People Behind Horizon Bank</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="background: #0a5fa8;">TM</div>
+        <div class="team-name">Thomas Mercier</div>
+        <div class="team-role">Founder & CEO</div>
+        <div class="team-bio">15+ years in retail banking. Former Director of Credit Risk at BNP Paribas. Passionate
+          about ethical finance and AI transparency.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: #16a34a;">SL</div>
+        <div class="team-name">Sophie Laurent</div>
+        <div class="team-role">Chief Risk Officer</div>
+        <div class="team-bio">Expert in regulatory compliance and credit scoring models. Led the GDPR Article 22
+          implementation across all decision systems.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: #a83255;">KD</div>
+        <div class="team-name">Karim Diouf</div>
+        <div class="team-role">Head of Data Science</div>
+        <div class="team-bio">PhD in Machine Learning. Designed our CatBoost-based scoring model with a focus on
+          explainability and fairness metrics.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RGPD BANNER -->
+  <section class="rgpd-banner">
+    <h2>Our Commitment to GDPR & Ethical AI</h2>
+    <p>
+      Horizon Bank is fully compliant with the General Data Protection Regulation.
+      Under Article 22, every automated decision is subject to human review.
+      We never make fully automated decisions that significantly affect our clients.
+    </p>
+    <div class="rgpd-pills">
+      <span class="rgpd-pill">✓ GDPR Article 22 Compliant</span>
+      <span class="rgpd-pill">✓ No Discriminatory Variables</span>
+      <span class="rgpd-pill">✓ Explainable AI</span>
+      <span class="rgpd-pill">✓ Human Analyst Validation</span>
+      <span class="rgpd-pill">✓ Data Never Sold</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Apply for a Loan?</h2>
+    <p>Join thousands of clients who trust Horizon Bank for fair and transparent credit decisions.</p>
+    <a href="{% url 'register' %}" class="btn-cta">Create an Account</a>
+  </section>
+  <footer
+    style="background:#0d1b2e; padding:20px 40px; display:flex; justify-content:space-between; align-items:center;">
+    <span style="color:#64748b; font-size:0.82rem;">© 2026 Horizon Bank SAS — All rights reserved</span>
+    <div style="display:flex; gap:24px;">
+      <a href="{% url 'legal' %}" style="color:#64748b; font-size:0.82rem; text-decoration:none;">Legal Notice & Privacy
+        Policy</a>
+      <a href="{% url 'about' %}" style="color:#64748b; font-size:0.82rem; text-decoration:none;">About Us</a>
+    </div>
+  </footer>
+
+  {% include 'loan_manager/includes/cookie_banner.html' %}
+</body>
+
+</html>

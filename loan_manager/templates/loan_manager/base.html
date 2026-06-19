@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Bank</title>
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav role="navigation" class="navbar">
+    <a href="{% url 'login' %}" class="navbar-logo">
+      <div class="logo-icon">
+        <div class="logo-arc"></div>
+        <div class="logo-base"></div>
+      </div>
+      <span class="logo-text">Horizon Bank</span>
+    </a>
+
+    <ul class="navbar-links">
+      <li><a href="#" class="active">Personal</a></li>
+      <li><a href="#">Business</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  {% include 'loan_manager/includes/cookie_banner.html' %}
+</body>
+</html>

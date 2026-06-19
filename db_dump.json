@@ -1,0 +1,1012 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 3,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 3,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 3,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 3,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 2,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 2,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 2,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 2,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add analyst note",
+    "content_type": 7,
+    "codename": "add_analystnote"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change analyst note",
+    "content_type": 7,
+    "codename": "change_analystnote"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete analyst note",
+    "content_type": 7,
+    "codename": "delete_analystnote"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view analyst note",
+    "content_type": 7,
+    "codename": "view_analystnote"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add loan application",
+    "content_type": 8,
+    "codename": "add_loanapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change loan application",
+    "content_type": 8,
+    "codename": "change_loanapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete loan application",
+    "content_type": 8,
+    "codename": "delete_loanapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view loan application",
+    "content_type": 8,
+    "codename": "view_loanapplication"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add client profile",
+    "content_type": 10,
+    "codename": "add_clientprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change client profile",
+    "content_type": 10,
+    "codename": "change_clientprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete client profile",
+    "content_type": 10,
+    "codename": "delete_clientprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view client profile",
+    "content_type": 10,
+    "codename": "view_clientprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add analyst profile",
+    "content_type": 9,
+    "codename": "add_analystprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change analyst profile",
+    "content_type": 9,
+    "codename": "change_analystprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete analyst profile",
+    "content_type": 9,
+    "codename": "delete_analystprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view analyst profile",
+    "content_type": 9,
+    "codename": "view_analystprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add document",
+    "content_type": 11,
+    "codename": "add_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change document",
+    "content_type": 11,
+    "codename": "change_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete document",
+    "content_type": 11,
+    "codename": "delete_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view document",
+    "content_type": 11,
+    "codename": "view_document"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cAH8qWdSbk9uc26AcDSwXd$Cd/CfEJG1IjZVjg/xzD4IEOxNZZBj7tTQNusdli9+5s=",
+    "last_login": "2026-06-19T13:11:40.686Z",
+    "is_superuser": false,
+    "username": "johndoe@gmail.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T12:53:13.389Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$FoCayedgyvQj6CRkoq47mt$xP+C+CiVsCIqgBuHd9/Z1IY2R3W+gMecb2lgLo3WFyo=",
+    "last_login": "2026-06-19T13:41:36.183Z",
+    "is_superuser": true,
+    "username": "marie-analyst@horizonbank.com",
+    "first_name": "Marie",
+    "last_name": "Dupont",
+    "email": "marie-analyst@horizonbank.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-06-19T12:53:13.663Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$oK0I9ORJa9NxsQVUe1vV7I$l0jiFOwWqvlU/r2pyaFAhbGe14673WW7cfDp3TdqAYY=",
+    "last_login": "2026-06-19T13:40:43.270Z",
+    "is_superuser": false,
+    "username": "alice.martin@gmail.com",
+    "first_name": "Alice",
+    "last_name": "Martin",
+    "email": "alice.martin@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:01.960Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$98ihOsIckQTnl3wmz569CH$R7B7YXH9ccFWPql3xaPAmDiecsva7qsWfaAJDaGTnFc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "bob.smith@gmail.com",
+    "first_name": "Bob",
+    "last_name": "Smith",
+    "email": "bob.smith@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:02.312Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ndgeQ116eed62xuPQbFJRg$oktya1pTvDsqWQ4+xIuMlVUmhP1nargEjRcY6ijuaAs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "clara.dupont@gmail.com",
+    "first_name": "Clara",
+    "last_name": "Dupont",
+    "email": "clara.dupont@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:02.527Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$XiKX7FkC8qGWpcrOvaadrj$4r457ABElYs/gAMucVNLz4l+DMESpiMMCiJ6XBuiaHU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "david.kumar@gmail.com",
+    "first_name": "David",
+    "last_name": "Kumar",
+    "email": "david.kumar@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:02.734Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$dzidWjysBHgo8Lez3pd3EG$KKGeYXljNvwB+gLoda8EQpMasfmD/HkpcuHbObSo8ok=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "emma.wilson@gmail.com",
+    "first_name": "Emma",
+    "last_name": "Wilson",
+    "email": "emma.wilson@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:02.943Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$jkkGelXta6AR8owjUzpfZz$F/2RC2XbX2Pj9oiJur00YjgM/nUxDt/rHUlDdSpW27E=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "farid.benali@gmail.com",
+    "first_name": "Farid",
+    "last_name": "Benali",
+    "email": "farid.benali@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:03.154Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Lp2YWlrs7ob9tMafDGLtbg$5I+CX1Tgfdcfk3JGTRxpFpgOEglnG0KRfh9v9IIImrg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "grace.chen@gmail.com",
+    "first_name": "Grace",
+    "last_name": "Chen",
+    "email": "grace.chen@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:03.347Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$luq6FU1JQcnXUAKyg8e0tc$emufPTt2uXFyJquaLstIwiUfzCIN/DLQCUWdet0vixw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hugo.rossi@gmail.com",
+    "first_name": "Hugo",
+    "last_name": "Rossi",
+    "email": "hugo.rossi@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:03.553Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GQP44F7PVeHJacxs1q5pFl$fKBci/hiLsnC56CR9n7liXcWLRG2ArqadFDl8ojAcQ8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ines.nakamura@gmail.com",
+    "first_name": "Ines",
+    "last_name": "Nakamura",
+    "email": "ines.nakamura@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-06-19T13:38:03.783Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "loan_manager",
+    "model": "analystnote"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "loan_manager",
+    "model": "loanapplication"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "loan_manager",
+    "model": "analystprofile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "loan_manager",
+    "model": "clientprofile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "loan_manager",
+    "model": "document"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bp0gn6ml0v62iblql9glc3ybmgr3igxp",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAcaKEu3fcMZAYGqRpISrsy3l1JutDtf-_9l_C4b9nvjVe_RHERgzj9boThwaWDeMdyqzLUsq0Lya7IgzY518jP6-H-HWRsudcWSTmlVFDsQtSMaTIGmBJADOTcWVtKjBDpa46AaE0CHAyMygU9ifcHC6I4qw:1waZTU:kvTUtNTPa3aIzql1u4xyhbse_1XzY1GRZbuCTcug63g",
+    "expire_date": "2026-07-03T13:41:36.187Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 14,
+  "fields": {
+    "user": 4,
+    "age": 23,
+    "income": 1303834.0,
+    "experience": 3,
+    "current_house_yrs": 13,
+    "cur_job_years": 3,
+    "loan_amount": 380500.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "Central India",
+    "job_category": "Engineering",
+    "risk_score": 47.74,
+    "risk_flag": 0,
+    "ai_prediction": "Pending",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:23:48.037Z",
+    "updated_at": "2026-06-19T13:23:48.037Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 24,
+  "fields": {
+    "user": 6,
+    "age": 78,
+    "income": 4634680.0,
+    "experience": 7,
+    "current_house_yrs": 12,
+    "cur_job_years": 7,
+    "loan_amount": 1025200.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "East India",
+    "job_category": "Aviation, Defense & Security",
+    "risk_score": 22.72,
+    "risk_flag": 0,
+    "ai_prediction": "Approved",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:02.310Z",
+    "updated_at": "2026-06-19T13:38:02.310Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 25,
+  "fields": {
+    "user": 7,
+    "age": 52,
+    "income": 3939397.0,
+    "experience": 19,
+    "current_house_yrs": 10,
+    "cur_job_years": 3,
+    "loan_amount": 630400.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "yes",
+    "region": "South India",
+    "job_category": "Aviation, Defense & Security",
+    "risk_score": 36.14,
+    "risk_flag": 0,
+    "ai_prediction": "Pending",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:02.526Z",
+    "updated_at": "2026-06-19T13:38:02.526Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 26,
+  "fields": {
+    "user": 8,
+    "age": 46,
+    "income": 1885923.0,
+    "experience": 16,
+    "current_house_yrs": 14,
+    "cur_job_years": 8,
+    "loan_amount": 289800.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "South India",
+    "job_category": "Law, Government & Public Service",
+    "risk_score": 73.97,
+    "risk_flag": 1,
+    "ai_prediction": "Pending",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:02.732Z",
+    "updated_at": "2026-06-19T13:38:02.732Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 27,
+  "fields": {
+    "user": 9,
+    "age": 68,
+    "income": 7839236.0,
+    "experience": 7,
+    "current_house_yrs": 14,
+    "cur_job_years": 7,
+    "loan_amount": 1368200.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "West India",
+    "job_category": "Engineering",
+    "risk_score": 65.93,
+    "risk_flag": 1,
+    "ai_prediction": "Pending",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:02.942Z",
+    "updated_at": "2026-06-19T13:38:02.942Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 28,
+  "fields": {
+    "user": 10,
+    "age": 23,
+    "income": 8769550.0,
+    "experience": 5,
+    "current_house_yrs": 10,
+    "cur_job_years": 5,
+    "loan_amount": 2876100.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "North India",
+    "job_category": "Technology & IT",
+    "risk_score": 13.1,
+    "risk_flag": 0,
+    "ai_prediction": "Approved",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:03.153Z",
+    "updated_at": "2026-06-19T13:38:03.153Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 29,
+  "fields": {
+    "user": 11,
+    "age": 69,
+    "income": 6694786.0,
+    "experience": 17,
+    "current_house_yrs": 11,
+    "cur_job_years": 11,
+    "loan_amount": 1173900.0,
+    "marital_status": "single",
+    "house_ownership": "norent_noown",
+    "car_ownership": "no",
+    "region": "South India",
+    "job_category": "Engineering",
+    "risk_score": 80.17,
+    "risk_flag": 1,
+    "ai_prediction": "Rejected",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:03.346Z",
+    "updated_at": "2026-06-19T13:38:03.346Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 30,
+  "fields": {
+    "user": 12,
+    "age": 29,
+    "income": 6715263.0,
+    "experience": 0,
+    "current_house_yrs": 11,
+    "cur_job_years": 0,
+    "loan_amount": 1443200.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "Central India",
+    "job_category": "Engineering",
+    "risk_score": 84.65,
+    "risk_flag": 1,
+    "ai_prediction": "Rejected",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:03.550Z",
+    "updated_at": "2026-06-19T13:38:03.551Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 31,
+  "fields": {
+    "user": 13,
+    "age": 35,
+    "income": 9454655.0,
+    "experience": 7,
+    "current_house_yrs": 14,
+    "cur_job_years": 7,
+    "loan_amount": 2886400.0,
+    "marital_status": "single",
+    "house_ownership": "rented",
+    "car_ownership": "no",
+    "region": "South India",
+    "job_category": "Law, Government & Public Service",
+    "risk_score": 24.88,
+    "risk_flag": 0,
+    "ai_prediction": "Approved",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:03.781Z",
+    "updated_at": "2026-06-19T13:38:03.781Z"
+  }
+},
+{
+  "model": "loan_manager.loanapplication",
+  "pk": 32,
+  "fields": {
+    "user": 14,
+    "age": 48,
+    "income": 8600643.0,
+    "experience": 17,
+    "current_house_yrs": 13,
+    "cur_job_years": 6,
+    "loan_amount": 2249800.0,
+    "marital_status": "single",
+    "house_ownership": "owned",
+    "car_ownership": "no",
+    "region": "East India",
+    "job_category": "Engineering",
+    "risk_score": 8.4,
+    "risk_flag": 0,
+    "ai_prediction": "Approved",
+    "final_decision": null,
+    "created_at": "2026-06-19T13:38:04.015Z",
+    "updated_at": "2026-06-19T13:38:04.015Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 2,
+  "fields": {
+    "user": 4,
+    "created_at": "2026-06-19T12:53:13.659Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "created_at": "2026-06-19T13:38:02.279Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 4,
+  "fields": {
+    "user": 7,
+    "created_at": "2026-06-19T13:38:02.515Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 5,
+  "fields": {
+    "user": 8,
+    "created_at": "2026-06-19T13:38:02.722Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 6,
+  "fields": {
+    "user": 9,
+    "created_at": "2026-06-19T13:38:02.933Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 7,
+  "fields": {
+    "user": 10,
+    "created_at": "2026-06-19T13:38:03.144Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 8,
+  "fields": {
+    "user": 11,
+    "created_at": "2026-06-19T13:38:03.336Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 9,
+  "fields": {
+    "user": 12,
+    "created_at": "2026-06-19T13:38:03.541Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 10,
+  "fields": {
+    "user": 13,
+    "created_at": "2026-06-19T13:38:03.768Z"
+  }
+},
+{
+  "model": "loan_manager.clientprofile",
+  "pk": 11,
+  "fields": {
+    "user": 14,
+    "created_at": "2026-06-19T13:38:04.005Z"
+  }
+}
+]

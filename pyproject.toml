@@ -1,0 +1,29 @@
+[project]
+name = "projet-bachelor-scoring"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "catboost>=1.2.8",
+    "dj-database-url>=2.3.0",
+    "django>=6.0.1",
+    "django-crispy-forms>=2.5",
+    "djangorestframework>=3.16.1",
+    "drf-spectacular>=0.29.0",
+    "gunicorn>=23.0.0",
+    "joblib>=1.5.3",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.0",
+    "plotly>=6.5.2",
+    "psycopg2-binary>=2.9.11",
+    "python-dotenv>=1.2.2",
+    "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
+    "whitenoise[brotli]>=6.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "pymupdf>=1.27.2.3",
+]

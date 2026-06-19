@@ -1,0 +1,575 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Bank – Legal Notice & Privacy Policy</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; }
+
+    .navbar {
+      background-color: #0a5fa8;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 62px; z-index: 10;
+    }
+    .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon { position: relative; width: 44px; height: 38px; }
+    .logo-arc {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 36px; height: 18px; border: 3px solid white;
+      border-bottom: none; border-radius: 18px 18px 0 0;
+    }
+    .logo-base {
+      position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 3px; background: white; border-radius: 2px;
+    }
+    .logo-text { color: white; font-size: 1.35rem; font-weight: 700; }
+    .navbar-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .navbar-links a {
+      color: white; text-decoration: none; font-size: 1rem; font-weight: 500;
+      padding-bottom: 4px; border-bottom: 2px solid transparent; transition: border-color 0.2s;
+    }
+    .navbar-links a:hover { border-bottom: 2px solid white; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0a5fa8 0%, #0d3f6e 100%);
+      padding: 60px 80px;
+    }
+    .hero-tag {
+      display: inline-block; background: rgba(255,255,255,0.15);
+      color: white; font-size: 0.82rem; font-weight: 600;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 16px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .hero-title { color: white; font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+    .hero-subtitle { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+
+    /* LAYOUT */
+    .page-layout {
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 40px; max-width: 1100px; margin: 48px auto; padding: 0 40px 80px 40px;
+    }
+
+    /* SIDEBAR NAV */
+    .legal-nav {
+      position: sticky; top: 24px; align-self: start;
+      background: white; border-radius: 12px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .legal-nav-title {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 12px;
+    }
+    .legal-nav a {
+      display: block; padding: 8px 12px; color: #555; text-decoration: none;
+      font-size: 0.88rem; border-radius: 6px; transition: background 0.15s, color 0.15s;
+      margin-bottom: 4px;
+    }
+    .legal-nav a:hover { background: #eaf1fb; color: #0a5fa8; }
+    .legal-nav a.active { background: #eaf1fb; color: #0a5fa8; font-weight: 600; }
+
+    /* CONTENT */
+    .legal-content { }
+
+    .legal-section {
+      background: white; border-radius: 12px; padding: 36px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 28px;
+    }
+
+    .legal-section-tag {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #0a5fa8; margin-bottom: 8px;
+    }
+    .legal-section h2 {
+      font-size: 1.5rem; font-weight: 700; color: #1a2b45; margin-bottom: 24px;
+      padding-bottom: 16px; border-bottom: 2px solid #eaf1fb;
+    }
+    .legal-section h3 {
+      font-size: 1rem; font-weight: 700; color: #1a2b45;
+      margin: 24px 0 10px 0;
+    }
+    .legal-section p {
+      font-size: 0.92rem; color: #475569; line-height: 1.8; margin-bottom: 12px;
+    }
+    .legal-section ul {
+      margin: 8px 0 16px 20px;
+    }
+    .legal-section ul li {
+      font-size: 0.92rem; color: #475569; line-height: 1.8; margin-bottom: 4px;
+    }
+
+    .highlight-box {
+      background: #eaf1fb; border-left: 4px solid #0a5fa8;
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0;
+    }
+    .highlight-box p { margin-bottom: 0; color: #1a2b45; font-weight: 500; }
+
+    .rgpd-box {
+      background: #f0fdf4; border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0;
+    }
+    .rgpd-box p { margin-bottom: 0; color: #166534; font-weight: 500; }
+
+    .update-date {
+      font-size: 0.8rem; color: #94a3b8; margin-top: 24px;
+      padding-top: 16px; border-top: 1px solid #f0f4f8;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0d1b2e; padding: 32px 80px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-text { color: #64748b; font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #64748b; text-decoration: none; font-size: 0.85rem; }
+    .footer-links a:hover { color: white; }
+
+    /* ===== RESPONSIVE ===== */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none; flex-shrink: 0;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+
+    /* Tablette (1024px) */
+    @media (max-width: 1024px) {
+      .navbar { padding: 0 24px; }
+      .hero { padding: 48px 40px; }
+      .page-layout { padding: 0 24px 60px 24px; gap: 28px; }
+      .footer { padding: 28px 40px; }
+    }
+
+    /* 768px */
+    @media (max-width: 768px) {
+      .navbar { padding: 0 16px; position: relative; }
+      .nav-hamburger { display: flex; }
+      .navbar-links {
+        display: none; position: absolute; top: 62px; left: 0; right: 0;
+        flex-direction: column; background: #0a5fa8; z-index: 100;
+        padding: 8px 20px 20px; gap: 0;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        list-style: none;
+      }
+      .navbar-links.open { display: flex; }
+      .navbar-links a { display: block; padding: 11px 0; font-size: 0.97rem; border-bottom: none; }
+      .navbar-links li + li { border-top: 1px solid rgba(255,255,255,0.1); }
+      .hero { padding: 36px 24px; }
+      .hero-title { font-size: 1.7rem; }
+      .page-layout { grid-template-columns: 1fr; padding: 24px 20px 48px; gap: 0; }
+      .legal-nav { display: none; }
+      .legal-section { padding: 24px; }
+      .footer { padding: 24px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      .footer-links { gap: 16px; }
+    }
+
+    /* 480px */
+    @media (max-width: 480px) {
+      .navbar { padding: 0 12px; height: 56px; }
+      .navbar-links { top: 56px; }
+      .logo-text { font-size: 1.1rem; }
+      .hero { padding: 28px 16px; }
+      .hero-title { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .page-layout { padding: 16px 12px 40px; }
+      .legal-section { padding: 20px 16px; margin-bottom: 20px; }
+      .legal-section h2 { font-size: 1.25rem; padding-bottom: 12px; margin-bottom: 18px; }
+      .legal-section h3 { font-size: 0.93rem; }
+      .legal-section p, .legal-section ul li { font-size: 0.88rem; }
+      .highlight-box, .rgpd-box { padding: 12px 16px; }
+      .footer { padding: 20px 12px; }
+      .footer-text, .footer-links a { font-size: 0.8rem; }
+      .footer-links { flex-wrap: wrap; gap: 12px; }
+    }
+
+    /* 360px */
+    @media (max-width: 360px) {
+      .navbar { padding: 0 8px; height: 52px; }
+      .navbar-links { top: 52px; }
+      .logo-text { font-size: 0.95rem; }
+      .hero { padding: 22px 12px; }
+      .hero-title { font-size: 1.2rem; }
+      .hero-tag { font-size: 0.72rem; padding: 4px 12px; margin-bottom: 10px; }
+      .page-layout { padding: 12px 8px 32px; }
+      .legal-section { padding: 16px 14px; margin-bottom: 16px; }
+      .legal-section h2 { font-size: 1.1rem; }
+      .legal-section p, .legal-section ul li { font-size: 0.85rem; }
+      .footer { padding: 16px 8px; }
+      .footer-text { font-size: 0.75rem; }
+    }
+
+    /* 320px */
+    @media (max-width: 320px) {
+      .logo-text { font-size: 0.88rem; }
+      .hero { padding: 18px 10px; }
+      .hero-title { font-size: 1.05rem; }
+      .page-layout { padding: 10px 6px 28px; }
+      .legal-section { padding: 14px 12px; }
+      .legal-section h2 { font-size: 1rem; }
+      .legal-section p, .legal-section ul li { font-size: 0.82rem; }
+      .footer-links { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav role="navigation" class="navbar">
+    <a href="{% url 'login' %}" class="navbar-logo">
+      <div class="logo-icon"><div class="logo-arc"></div><div class="logo-base"></div></div>
+      <span class="logo-text">Horizon Bank</span>
+    </a>
+    <ul class="navbar-links" id="navLinks">
+      <li><a href="{% url 'login' %}">Personal</a></li>
+      <li><a href="{% url 'about' %}">About Us</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Legal</div>
+    <h1 class="hero-title">Legal Notice, Privacy Policy & Terms of Use</h1>
+    <p class="hero-subtitle">Last updated: June 2026 — Horizon Bank SAS, Paris, France</p>
+  </section>
+
+  <div class="page-layout">
+
+    <!-- SIDEBAR -->
+    <aside role="complementary" class="legal-nav">
+      <div class="legal-nav-title">Contents</div>
+      <a href="#legal-notice" class="active">1. Legal Notice</a>
+      <a href="#privacy">2. Privacy Policy</a>
+      <a href="#automated">3. Automated Processing</a>
+      <a href="#rights">4. Your Rights (GDPR)</a>
+      <a href="#cgu">5. Terms of Use</a>
+      <a href="#cookies">6. Cookies</a>
+      <a href="#contact">7. Contact</a>
+    </aside>
+
+    <!-- CONTENT -->
+    <main role="main" class="legal-content">
+
+      <!-- 1. LEGAL NOTICE -->
+      <div class="legal-section" id="legal-notice">
+        <div class="legal-section-tag">Section 1</div>
+        <h2>Legal Notice</h2>
+
+        <h3>Publisher</h3>
+        <p>
+          <strong>Horizon Bank SAS</strong><br>
+          15 Rue de la Paix, 75002 Paris, France<br>
+          Registration number: 123 456 789 RCS Paris<br>
+          Share capital: €2,500,000<br>
+          CEO: Thomas Mercier<br>
+          Email: contact@horizonbank.com<br>
+          Phone: +33 1 23 45 67 89
+        </p>
+
+        <h3>Hosting</h3>
+        <p>
+          This website is hosted by:<br>
+          <strong>Render Services, Inc.</strong><br>
+          525 Brannan Street, Suite 300, San Francisco, CA 94107, USA<br>
+          Website: render.com
+        </p>
+
+        <h3>Intellectual Property</h3>
+        <p>
+          All content on this website — including texts, graphics, logos, icons, images, and software —
+          is the exclusive property of Horizon Bank SAS and is protected by French and international
+          intellectual property laws. Any reproduction, distribution, or use without prior written
+          consent is strictly prohibited.
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 2. PRIVACY POLICY -->
+      <div class="legal-section" id="privacy">
+        <div class="legal-section-tag">Section 2</div>
+        <h2>Privacy Policy</h2>
+
+        <p>
+          Horizon Bank SAS, as data controller, is committed to protecting the personal data of its users
+          in accordance with the General Data Protection Regulation (GDPR) — Regulation (EU) 2016/679 —
+          and the French Data Protection Act (Loi Informatique et Libertés).
+        </p>
+
+        <h3>Data We Collect</h3>
+        <p>When you create an account or submit a loan application, we collect the following data:</p>
+        <ul>
+          <li>Identity data: first name, last name, email address</li>
+          <li>Professional data: age, income, professional experience, job category</li>
+          <li>Housing data: house ownership status, years at current address</li>
+          <li>Asset data: car ownership</li>
+          <li>Geographic data: region of residence</li>
+          <li>Supporting documents uploaded voluntarily (pay slips, rent receipts, work contracts)</li>
+        </ul>
+
+        <div class="highlight-box">
+          <p>
+            ⚠ We do not collect any sensitive data as defined by Article 9 of the GDPR —
+            including racial or ethnic origin, political opinions, religious beliefs, health data,
+            or sexual orientation. Our scoring model explicitly excludes all discriminatory variables.
+          </p>
+        </div>
+
+        <h3>Purpose of Processing</h3>
+        <p>Your data is collected and processed for the following purposes:</p>
+        <ul>
+          <li>Managing your user account and authenticating your identity</li>
+          <li>Processing your loan application and communicating decisions</li>
+          <li>Supporting our risk analysts in their review process</li>
+          <li>Complying with our legal and regulatory obligations</li>
+          <li>Improving the security and reliability of our platform</li>
+        </ul>
+
+        <h3>Legal Basis for Processing</h3>
+        <ul>
+          <li><strong>Contract performance</strong> — processing necessary to manage your loan application</li>
+          <li><strong>Legal obligation</strong> — compliance with banking and anti-money laundering regulations</li>
+          <li><strong>Legitimate interest</strong> — fraud prevention and platform security</li>
+        </ul>
+
+        <h3>Data Retention</h3>
+        <ul>
+          <li>Account data: retained for the duration of your account + 3 years after closure</li>
+          <li>Loan application data: retained for 5 years from the date of the decision</li>
+          <li>Supporting documents: retained for 5 years in accordance with banking regulations</li>
+        </ul>
+
+        <h3>Data Recipients</h3>
+        <p>
+          Your personal data is accessible only to Horizon Bank staff with a legitimate need to know —
+          specifically our certified risk analysts. We do not sell, rent, or transfer your data
+          to any third party for commercial purposes.
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 3. AUTOMATED PROCESSING -->
+      <div class="legal-section" id="automated">
+        <div class="legal-section-tag">Section 3 — GDPR Article 22</div>
+        <h2>Automated Processing & Human Oversight</h2>
+
+        <div class="rgpd-box">
+          <p>
+            ✓ In accordance with Article 22 of the GDPR, Horizon Bank guarantees that no decision
+            significantly affecting you is made solely on the basis of automated processing.
+            Every loan decision is reviewed and validated by a certified human analyst.
+          </p>
+        </div>
+
+        <h3>How Our Risk Analysis Works</h3>
+        <p>
+          Horizon Bank uses an internal risk analysis tool based on machine learning to assist
+          our analysts in evaluating loan applications. This tool produces a risk assessment
+          based on the financial and professional information you provide.
+        </p>
+        <p>
+          This automated analysis is strictly an internal decision-support tool.
+          It does not constitute a final decision and is never communicated to applicants.
+          The final lending decision is always made by a certified Horizon Bank risk analyst,
+          who may override or disregard the automated assessment at their discretion.
+        </p>
+
+        <h3>Your Right to Human Review</h3>
+        <p>
+          Under Article 22 of the GDPR, you have the right to:
+        </p>
+        <ul>
+          <li>Request that your application be reviewed by a human analyst</li>
+          <li>Express your point of view regarding any decision made about your application</li>
+          <li>Contest any decision that you believe does not reflect your actual situation</li>
+        </ul>
+        <p>
+          To exercise these rights, contact us at: <strong>dpo@horizonbank.com</strong>
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 4. YOUR RIGHTS -->
+      <div class="legal-section" id="rights">
+        <div class="legal-section-tag">Section 4</div>
+        <h2>Your Rights Under the GDPR</h2>
+
+        <p>In accordance with the GDPR, you have the following rights regarding your personal data:</p>
+
+        <h3>Right of Access (Article 15)</h3>
+        <p>You may request a copy of all personal data we hold about you at any time.</p>
+
+        <h3>Right to Rectification (Article 16)</h3>
+        <p>You may request correction of any inaccurate or incomplete personal data.</p>
+
+        <h3>Right to Erasure (Article 17)</h3>
+        <p>
+          You may request deletion of your personal data, subject to our legal retention obligations
+          under banking regulations.
+        </p>
+
+        <h3>Right to Restriction of Processing (Article 18)</h3>
+        <p>You may request that we temporarily restrict the processing of your data.</p>
+
+        <h3>Right to Data Portability (Article 20)</h3>
+        <p>You may request your personal data in a structured, machine-readable format.</p>
+
+        <h3>Right to Object (Article 21)</h3>
+        <p>You may object to the processing of your data based on legitimate interest.</p>
+
+        <h3>How to Exercise Your Rights</h3>
+        <p>
+          To exercise any of the above rights, please contact our Data Protection Officer:<br>
+          <strong>Email:</strong> dpo@horizonbank.com<br>
+          <strong>Address:</strong> Horizon Bank SAS — DPO, 15 Rue de la Paix, 75002 Paris, France
+        </p>
+        <p>
+          We will respond to your request within 30 days. If you are not satisfied with our response,
+          you have the right to lodge a complaint with the French data protection authority:
+          <strong>CNIL</strong> — <a href="https://www.cnil.fr" target="_blank" style="color:#0a5fa8;">www.cnil.fr</a>
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 5. CGU -->
+      <div class="legal-section" id="cgu">
+        <div class="legal-section-tag">Section 5</div>
+        <h2>Terms of Use (CGU)</h2>
+
+        <h3>Access to the Platform</h3>
+        <p>
+          Access to the Horizon Bank platform is reserved for natural persons aged 18 or over.
+          By creating an account, you confirm that the information you provide is accurate, complete,
+          and up to date.
+        </p>
+
+        <h3>User Obligations</h3>
+        <p>You agree to:</p>
+        <ul>
+          <li>Provide truthful and accurate information in your loan application</li>
+          <li>Not attempt to circumvent the platform's security mechanisms</li>
+          <li>Not submit fraudulent, falsified, or misleading documents</li>
+          <li>Keep your login credentials confidential and not share them with third parties</li>
+          <li>Notify Horizon Bank immediately of any unauthorized access to your account</li>
+        </ul>
+
+        <h3>Limitation of Liability</h3>
+        <p>
+          Horizon Bank cannot be held liable for any indirect, incidental, or consequential damages
+          arising from the use of this platform. The submission of a loan application does not
+          constitute a commitment to grant credit. Horizon Bank reserves the right to reject
+          any application without obligation to provide justification beyond what is required by law.
+        </p>
+
+        <h3>Account Termination</h3>
+        <p>
+          You may close your account at any time by contacting us at contact@horizonbank.com.
+          Horizon Bank reserves the right to suspend or terminate any account in the event of
+          fraudulent activity or breach of these terms.
+        </p>
+
+        <h3>Applicable Law</h3>
+        <p>
+          These terms are governed by French law. Any dispute arising from the use of this platform
+          shall be subject to the exclusive jurisdiction of the courts of Paris, France.
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 6. COOKIES -->
+      <div class="legal-section" id="cookies">
+        <div class="legal-section-tag">Section 6</div>
+        <h2>Cookie Policy</h2>
+
+        <p>
+          Horizon Bank uses cookies and similar technologies to ensure the proper functioning
+          of the platform and to improve your experience.
+        </p>
+
+        <h3>Types of Cookies We Use</h3>
+        <ul>
+          <li>
+            <strong>Essential cookies</strong> — necessary for the platform to function
+            (session management, CSRF protection). These cannot be disabled.
+          </li>
+          <li>
+            <strong>Functional cookies</strong> — used to remember your preferences
+            and maintain your login session.
+          </li>
+        </ul>
+
+        <p>
+          We do not use advertising cookies, tracking cookies, or third-party analytics cookies.
+          No data collected via cookies is shared with third parties for commercial purposes.
+        </p>
+
+        <h3>Managing Cookies</h3>
+        <p>
+          You can configure your browser to block or delete cookies at any time.
+          Note that disabling essential cookies may affect the functionality of the platform.
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+      <!-- 7. CONTACT -->
+      <div class="legal-section" id="contact">
+        <div class="legal-section-tag">Section 7</div>
+        <h2>Contact</h2>
+
+        <p>For any questions regarding this legal notice or your personal data:</p>
+
+        <h3>General Inquiries</h3>
+        <p>
+          Email: contact@horizonbank.com<br>
+          Phone: +33 1 23 45 67 89<br>
+          Address: 15 Rue de la Paix, 75002 Paris, France
+        </p>
+
+        <h3>Data Protection Officer (DPO)</h3>
+        <p>
+          Email: dpo@horizonbank.com<br>
+          Address: Horizon Bank SAS — DPO, 15 Rue de la Paix, 75002 Paris, France
+        </p>
+
+        <h3>Supervisory Authority</h3>
+        <p>
+          Commission Nationale de l'Informatique et des Libertés (CNIL)<br>
+          3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07<br>
+          <a href="https://www.cnil.fr" target="_blank" style="color:#0a5fa8;">www.cnil.fr</a>
+        </p>
+
+        <div class="update-date">Last updated: June 1, 2026</div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-text">© 2026 Horizon Bank SAS — All rights reserved</span>
+    <div class="footer-links">
+      <a href="{% url 'legal' %}">Legal Notice</a>
+      <a href="{% url 'about' %}">About Us</a>
+      <a href="{% url 'login' %}">Login</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+  {% include 'loan_manager/includes/cookie_banner.html' %}
+</body>
+</html>

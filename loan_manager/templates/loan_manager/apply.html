@@ -1,0 +1,699 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Bank – New Loan Application</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body { background: #f4f6f9; }
+    .dashboard-navbar {
+      background-color: #0a5fa8;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 62px; z-index: 10;
+    }
+    .navbar-user {
+      display: flex; align-items: center; gap: 10px;
+      color: white; font-size: 0.97rem; font-weight: 500; text-decoration: none;
+    }
+    .navbar-user svg { width: 32px; height: 32px; }
+    .dashboard-layout { display: flex; min-height: calc(100vh - 62px); }
+    .sidebar {
+      width: 200px; background: white;
+      border-right: 1px solid #e2e8f0; padding: 24px 0; flex-shrink: 0;
+    }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 24px; color: #555; font-size: 0.97rem;
+      font-weight: 500; text-decoration: none; transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-item:hover { background: #f0f4f8; color: #0a5fa8; }
+    .sidebar-item.active {
+      color: #0a5fa8; font-weight: 700;
+      background: #eaf1fb; border-left: 3px solid #0a5fa8;
+    }
+    .sidebar-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .dashboard-main { flex: 1; padding: 40px 48px; }
+    .page-title { font-size: 1.7rem; font-weight: 700; color: #1a2b45; margin-bottom: 28px; }
+    .apply-card {
+      background: white; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .apply-card-header { background: #1a5fa8; padding: 20px 32px; }
+    .apply-card-header h2 { color: white; font-size: 1.2rem; font-weight: 600; }
+    .apply-form { padding: 32px; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #0a5fa8; margin: 24px 0 14px 0;
+      border-bottom: 2px solid #eaf1fb; padding-bottom: 6px;
+    }
+    .section-label:first-child { margin-top: 0; }
+    .form-grid   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 0.88rem; font-weight: 600; color: #444; }
+    .field input, .field select {
+      padding: 11px 14px; border: 1.5px solid #dce3ec; border-radius: 7px;
+      font-size: 0.95rem; color: #333; background: #f9fafc; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    }
+    .field input:focus, .field select:focus {
+      border-color: #0a5fa8; box-shadow: 0 0 0 3px rgba(10,95,168,0.1); background: white;
+    }
+    .field input::placeholder { color: #bbb; }
+
+    /* VALIDATION STYLES */
+    .field input.error, .field select.error {
+      border-color: #dc2626; background: #fff5f5;
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+    }
+    .field input.success, .field select.success {
+      border-color: #16a34a; background: #f0fdf4;
+    }
+    .field-error {
+      font-size: 0.78rem; color: #dc2626; font-weight: 500;
+      display: flex; align-items: center; gap: 4px; margin-top: 2px;
+    }
+    .field-error::before { content: "⚠ "; }
+    .field-hint {
+      font-size: 0.75rem; color: #94a3b8; margin-top: 2px;
+    }
+
+    /* HIGHLIGHT */
+    .field.highlight input { border-color: #a83255; background: #fff7f9; font-weight: 600; font-size: 1rem; }
+    .field.highlight label { color: #a83255; }
+    .field.highlight input:focus { border-color: #a83255; box-shadow: 0 0 0 3px rgba(168,50,85,0.1); }
+    .field.highlight input.error { border-color: #dc2626; background: #fff5f5; }
+
+    /* UPLOAD */
+    .upload-zone {
+      border: 2px dashed #dce3ec; border-radius: 10px;
+      padding: 28px; text-align: center; background: #f9fafc;
+      transition: border-color 0.2s, background 0.2s; cursor: pointer; margin-bottom: 16px;
+    }
+    .upload-zone:hover, .upload-zone.dragover { border-color: #0a5fa8; background: #eaf1fb; }
+    .upload-zone svg { width: 40px; height: 40px; color: #94a3b8; margin-bottom: 10px; }
+    .upload-zone p { font-size: 0.93rem; color: #64748b; margin-bottom: 4px; }
+    .upload-zone span { font-size: 0.8rem; color: #94a3b8; }
+    .upload-zone input[type="file"] { display: none; }
+    .file-list { display: flex; flex-direction: column; gap: 10px; }
+    .file-item {
+      display: flex; align-items: center; gap: 12px;
+      background: #f1f5f9; border-radius: 8px; padding: 10px 14px;
+    }
+    .file-item svg { width: 20px; height: 20px; color: #0a5fa8; flex-shrink: 0; }
+    .file-name { font-size: 0.88rem; color: #334155; font-weight: 500; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-type-select {
+      padding: 5px 10px; border: 1.5px solid #dce3ec; border-radius: 6px;
+      font-size: 0.82rem; color: #333; background: white; outline: none; cursor: pointer;
+    }
+    .file-remove { background: none; border: none; cursor: pointer; color: #dc2626; padding: 2px; display: flex; align-items: center; }
+    .file-remove svg { width: 16px; height: 16px; }
+
+    /* GLOBAL ERROR BANNER */
+    .form-errors {
+      background: #fff0f0; border: 1px solid #fca5a5; border-radius: 8px;
+      padding: 14px 18px; margin-bottom: 20px; color: #dc2626; font-size: 0.9rem;
+    }
+
+    .form-footer {
+      display: flex; justify-content: flex-end; align-items: center; gap: 16px;
+      margin-top: 32px; padding-top: 24px; border-top: 1px solid #f0f4f8;
+    }
+    .btn-cancel {
+      background: none; border: 1.5px solid #ccc; border-radius: 7px;
+      padding: 11px 28px; font-size: 0.95rem; color: #666; cursor: pointer;
+      text-decoration: none; transition: border-color 0.2s;
+    }
+    .btn-cancel:hover { border-color: #999; color: #333; }
+    .btn-submit {
+      background: #a83255; color: white; border: none; border-radius: 7px;
+      padding: 12px 36px; font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #8a2444; }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* ===== RESPONSIVE ===== */
+    .navbar-left { display: flex; align-items: center; gap: 10px; }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none; flex-shrink: 0;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4); z-index: 49;
+    }
+    .sidebar-overlay.active { display: block; }
+
+    /* Tablette (1024px) */
+    @media (max-width: 1024px) {
+      .dashboard-navbar { padding: 0 24px; }
+      .dashboard-main { padding: 28px 24px; }
+      .apply-form { padding: 24px; }
+      .form-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* 768px */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .sidebar {
+        position: fixed; left: -220px; top: 62px;
+        height: calc(100vh - 62px); z-index: 50;
+        transition: left 0.3s; width: 220px;
+        box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+      }
+      .sidebar.open { left: 0; }
+      .dashboard-layout { display: block; min-height: calc(100vh - 62px); }
+      .dashboard-main { padding: 20px 16px; }
+      .page-title { font-size: 1.4rem; margin-bottom: 20px; }
+      .apply-card-header { padding: 16px 20px; }
+      .apply-form { padding: 20px; }
+      .form-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .form-grid-2 { gap: 14px; }
+      .upload-zone { padding: 20px; }
+    }
+
+    /* 480px */
+    @media (max-width: 480px) {
+      .dashboard-navbar { padding: 0 12px; height: 56px; }
+      .sidebar { top: 56px; height: calc(100vh - 56px); }
+      .dashboard-layout { min-height: calc(100vh - 56px); }
+      .logo-text { font-size: 1.1rem; }
+      .navbar-user { font-size: 0.85rem; gap: 6px; }
+      .navbar-user svg { width: 24px; height: 24px; }
+      .dashboard-main { padding: 14px 12px; }
+      .page-title { font-size: 1.2rem; }
+      .apply-form { padding: 16px; }
+      .form-grid { grid-template-columns: 1fr; gap: 12px; }
+      .form-grid-2 { grid-template-columns: 1fr; gap: 12px; }
+      .field label { font-size: 0.85rem; }
+      .field input, .field select { padding: 10px 12px; font-size: 0.92rem; }
+      .upload-zone { padding: 16px; }
+      .upload-zone svg { width: 32px; height: 32px; }
+      .upload-zone p { font-size: 0.88rem; }
+      .form-footer { flex-direction: column; gap: 10px; margin-top: 24px; }
+      .btn-cancel, .btn-submit { width: 100%; text-align: center; padding: 12px; }
+      .file-item { flex-wrap: wrap; gap: 8px; }
+      .file-type-select { width: 100%; }
+    }
+
+    /* 360px */
+    @media (max-width: 360px) {
+      .dashboard-navbar { padding: 0 8px; height: 52px; }
+      .sidebar { top: 52px; height: calc(100vh - 52px); }
+      .dashboard-layout { min-height: calc(100vh - 52px); }
+      .logo-text { font-size: 0.95rem; }
+      .logout-text { display: none; }
+      .dashboard-main { padding: 12px 8px; }
+      .page-title { font-size: 1.05rem; }
+      .apply-card-header h2 { font-size: 1rem; }
+      .apply-form { padding: 12px; }
+      .section-label { font-size: 0.72rem; }
+      .field input, .field select { padding: 9px 10px; font-size: 0.88rem; }
+      .upload-zone { padding: 14px; }
+      .btn-cancel, .btn-submit { font-size: 0.9rem; }
+    }
+
+    /* 320px */
+    @media (max-width: 320px) {
+      .logo-text { font-size: 0.88rem; }
+      .dashboard-main { padding: 10px 6px; }
+      .page-title { font-size: 0.95rem; }
+      .apply-form { padding: 10px; }
+      .field input, .field select { padding: 8px 10px; font-size: 0.85rem; }
+      .field label { font-size: 0.8rem; }
+      .field-hint { font-size: 0.7rem; }
+      .btn-cancel, .btn-submit { font-size: 0.85rem; padding: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav role="navigation" class="dashboard-navbar">
+    <div class="navbar-left">
+      <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="{% url 'dashboard' %}" class="navbar-logo">
+        <div class="logo-icon"><div class="logo-arc"></div><div class="logo-base"></div></div>
+        <span class="logo-text">Horizon Bank</span>
+      </a>
+    </div>
+    <a href="{% url 'logout' %}" class="navbar-user" aria-label="Log out">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804
+             M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <span class="logout-text">Log Out</span>
+    </a>
+  </nav>
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="dashboard-layout">
+    <aside role="complementary" aria-label="Sidebar navigation" class="sidebar" id="sidebar">
+      <a href="{% url 'dashboard' %}" class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z
+               M14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z
+               M4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2z
+               M14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
+        Dashboard
+      </a>
+      <a href="{% url 'apply_loan' %}" class="sidebar-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586
+               a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        New Application
+      </a>
+      <a href="{% url 'messages' %}" class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7
+               a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Messages
+      </a>
+    </aside>
+
+    <main role="main" class="dashboard-main">
+      <h1 class="page-title">New Loan Application</h1>
+
+      <div class="apply-card">
+        <div class="apply-card-header">
+          <h2>Fill in your information</h2>
+        </div>
+
+        <div class="apply-form">
+
+          {% if form.errors %}
+          <div class="form-errors" role="alert">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div>⚠ {{ field.label }} : {{ error }}</div>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div>⚠ {{ error }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <form aria-label="Loan application form" id="loanForm" method="POST" action="{% url 'apply_loan' %}" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            <!-- LOAN DETAILS -->
+            <div class="section-label">Loan Details</div>
+            <div class="form-grid-2">
+              <div class="field highlight">
+                <label for="id_loan_amount">Loan Amount ($) <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_loan_amount" name="loan_amount"
+                       placeholder="Ex: 15000" min="1000"
+                       value="{{ form.loan_amount.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Minimum $1,000</span>
+                <span class="field-error" role="alert" id="err_loan_amount" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_income">Annual Income ($) <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_income" name="income"
+                       placeholder="Ex: 45000" min="1"
+                       value="{{ form.income.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Must be greater than 0</span>
+                <span class="field-error" role="alert" id="err_income" style="display:none"></span>
+              </div>
+            </div>
+
+            <!-- PERSONAL INFO -->
+            <div class="section-label">Personal Information</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="id_age">Age <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_age" name="age"
+                       placeholder="Ex: 32" min="18" max="80"
+                       value="{{ form.age.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Between 18 and 80</span>
+                <span class="field-error" role="alert" id="err_age" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_marital_status">Marital Status <span style="color:#dc2626">*</span></label>
+                <select id="id_marital_status" name="marital_status" aria-required="true">
+                  <option value="">— Select —</option>
+                  {% for value, label in form.fields.marital_status.choices %}
+                    {% if value %}
+                    <option value="{{ value }}" {% if form.marital_status.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <span class="field-error" role="alert" id="err_marital_status" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_region">Region <span style="color:#dc2626">*</span></label>
+                <select id="id_region" name="region" aria-required="true">
+                  <option value="">— Select —</option>
+                  {% for value, label in form.fields.region.choices %}
+                    {% if value %}
+                    <option value="{{ value }}" {% if form.region.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <span class="field-error" role="alert" id="err_region" style="display:none"></span>
+              </div>
+            </div>
+
+            <!-- PROFESSIONAL INFO -->
+            <div class="section-label">Professional Information</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="id_experience">Professional Experience (years) <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_experience" name="experience"
+                       placeholder="Ex: 5" min="0" max="50"
+                       value="{{ form.experience.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Between 0 and 50</span>
+                <span class="field-error" role="alert" id="err_experience" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_cur_job_years">Years in Current Job <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_cur_job_years" name="cur_job_years"
+                       placeholder="Ex: 3" min="0"
+                       value="{{ form.cur_job_years.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Cannot exceed total experience</span>
+                <span class="field-error" role="alert" id="err_cur_job_years" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_job_category">Job Category <span style="color:#dc2626">*</span></label>
+                <select id="id_job_category" name="job_category" aria-required="true">
+                  <option value="">— Select —</option>
+                  {% for value, label in form.fields.job_category.choices %}
+                    {% if value %}
+                    <option value="{{ value }}" {% if form.job_category.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <span class="field-error" role="alert" id="err_job_category" style="display:none"></span>
+              </div>
+            </div>
+
+            <!-- ASSETS & HOUSING -->
+            <div class="section-label">Assets & Housing</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="id_house_ownership">House Ownership <span style="color:#dc2626">*</span></label>
+                <select id="id_house_ownership" name="house_ownership" aria-required="true">
+                  <option value="">— Select —</option>
+                  {% for value, label in form.fields.house_ownership.choices %}
+                    {% if value %}
+                    <option value="{{ value }}" {% if form.house_ownership.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <span class="field-error" role="alert" id="err_house_ownership" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_current_house_yrs">Years at Current Address <span style="color:#dc2626">*</span></label>
+                <input type="number" inputmode="numeric" id="id_current_house_yrs" name="current_house_yrs"
+                       placeholder="Ex: 4" min="0" max="50"
+                       value="{{ form.current_house_yrs.value|default:'' }}" aria-required="true">
+                <span class="field-hint">Between 0 and 50</span>
+                <span class="field-error" role="alert" id="err_current_house_yrs" style="display:none"></span>
+              </div>
+              <div class="field">
+                <label for="id_car_ownership">Car Ownership <span style="color:#dc2626">*</span></label>
+                <select id="id_car_ownership" name="car_ownership" aria-required="true">
+                  <option value="">— Select —</option>
+                  {% for value, label in form.fields.car_ownership.choices %}
+                    {% if value %}
+                    <option value="{{ value }}" {% if form.car_ownership.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <span class="field-error" role="alert" id="err_car_ownership" style="display:none"></span>
+              </div>
+            </div>
+
+            <!-- SUPPORTING DOCUMENTS -->
+            <div class="section-label">Supporting Documents</div>
+            <p style="font-size:0.88rem; color:#64748b; margin-bottom:16px;">
+              Upload supporting documents (pay slips, rent receipts, work contract, etc.). Optional but recommended.
+            </p>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              </svg>
+              <p>Click to upload or drag & drop</p>
+              <span>PDF, JPG, PNG — max 5MB per file</span>
+              <input type="file" id="fileInput" name="documents" multiple accept=".pdf,.jpg,.jpeg,.png">
+            </div>
+            <div class="file-list" id="fileList"></div>
+            <div id="docTypeInputs"></div>
+
+            <div class="form-footer">
+              <a href="{% url 'dashboard' %}" class="btn-cancel">Cancel</a>
+              <button type="submit" id="submitBtn" class="btn-submit">Submit Application</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('active');
+    }
+
+    // ===== VALIDATION RULES =====
+    const rules = {
+      loan_amount: {
+        validate: v => v >= 1000,
+        message: "Loan amount must be at least $1,000."
+      },
+      income: {
+        validate: v => v > 0,
+        message: "Annual income must be greater than 0."
+      },
+      age: {
+        validate: v => v >= 18 && v <= 80,
+        message: "Age must be between 18 and 80."
+      },
+      marital_status: {
+        validate: v => v !== "",
+        message: "Please select a marital status."
+      },
+      region: {
+        validate: v => v !== "",
+        message: "Please select a region."
+      },
+      experience: {
+        validate: v => {
+          const age = parseInt(document.getElementById('id_age').value) || 0;
+          return v >= 0 && v <= 50 && v <= (age - 18);
+        },
+        message: () => {
+          const age = parseInt(document.getElementById('id_age').value) || 0;
+          const max = Math.max(0, age - 18);
+          return `Experience must be between 0 and ${max} years (age - 18).`;
+        }
+      },
+      cur_job_years: {
+        validate: v => {
+          const exp = parseInt(document.getElementById('id_experience').value) || 0;
+          return v >= 0 && v <= exp;
+        },
+        message: () => {
+          const exp = parseInt(document.getElementById('id_experience').value) || 0;
+          return `Years in current job cannot exceed total experience (${exp} years).`;
+        }
+      },
+      job_category: {
+        validate: v => v !== "",
+        message: "Please select a job category."
+      },
+      house_ownership: {
+        validate: v => v !== "",
+        message: "Please select house ownership."
+      },
+      current_house_yrs: {
+    validate: v => {
+        const age = parseInt(document.getElementById('id_age').value) || 0;
+        return v >= 0 && v <= age;
+    },
+    message: () => {
+        const age = parseInt(document.getElementById('id_age').value) || 0;
+        return `Years at current address cannot exceed your age (${age} years).`;
+    }
+  },
+      car_ownership: {
+        validate: v => v !== "",
+        message: "Please select car ownership."
+      }
+    };
+
+    function getVal(id) {
+      const el = document.getElementById('id_' + id);
+      return el.tagName === 'SELECT' ? el.value : parseFloat(el.value);
+    }
+
+    function showError(id, msg) {
+      const input = document.getElementById('id_' + id);
+      const errEl = document.getElementById('err_' + id);
+      input.classList.add('error');
+      input.classList.remove('success');
+      errEl.textContent = msg;
+      errEl.style.display = 'flex';
+    }
+
+    function showSuccess(id) {
+      const input = document.getElementById('id_' + id);
+      const errEl = document.getElementById('err_' + id);
+      input.classList.remove('error');
+      input.classList.add('success');
+      errEl.style.display = 'none';
+    }
+
+    function validateField(id) {
+  const rule = rules[id];
+  if (!rule) return true;
+  const el = document.getElementById('id_' + id);
+  const rawVal = el.value.trim();
+
+  // Champ vide
+  if (rawVal === '') {
+    showError(id, 'This field is required.');
+    return false;
+  }
+
+  // Champ numérique — rejette tout ce qui n'est pas un nombre entier positif
+  if (el.tagName !== 'SELECT') {
+    if (!/^\d+(\.\d+)?$/.test(rawVal)) {
+      showError(id, 'Please enter a valid positive number (no letters or special characters).');
+      return false;
+    }
+  }
+
+  const val = el.tagName === 'SELECT' ? rawVal : parseFloat(rawVal);
+
+  if (!rule.validate(val)) {
+    const msg = typeof rule.message === 'function' ? rule.message() : rule.message;
+    showError(id, msg);
+    return false;
+  }
+
+  showSuccess(id);
+  return true;
+}
+
+    // Live validation on blur
+    Object.keys(rules).forEach(id => {
+      const el = document.getElementById('id_' + id);
+      if (el) {
+        el.addEventListener('blur', () => validateField(id));
+        el.addEventListener('input', () => {
+          if (el.classList.contains('error')) validateField(id);
+        });
+      }
+    });
+
+    // Re-validate cur_job_years when experience changes
+    document.getElementById('id_experience').addEventListener('blur', () => {
+      const curJob = document.getElementById('id_cur_job_years');
+      if (curJob.value !== '') validateField('cur_job_years');
+    });
+
+    // Form submit validation
+    document.getElementById('loanForm').addEventListener('submit', function(e) {
+      let valid = true;
+      Object.keys(rules).forEach(id => {
+        if (!validateField(id)) valid = false;
+      });
+      if (!valid) {
+        e.preventDefault();
+        // Scroll to first error
+        const firstError = document.querySelector('.field input.error, .field select.error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // ===== FILE UPLOAD =====
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput  = document.getElementById('fileInput');
+    const fileList   = document.getElementById('fileList');
+    const docTypeInputs = document.getElementById('docTypeInputs');
+
+    const DOC_TYPES = [
+      { value: 'payslip',     label: 'Pay Slip' },
+      { value: 'electricity', label: 'Electricity Bill' },
+      { value: 'rent',        label: 'Rent Receipt' },
+      { value: 'contract',    label: 'Work Contract' },
+      { value: 'other',       label: 'Other' },
+    ];
+
+    let selectedFiles = [];
+
+    fileInput.addEventListener('change', () => {
+      Array.from(fileInput.files).forEach(f => addFile(f));
+      fileInput.value = '';
+    });
+
+    uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+    uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+    uploadZone.addEventListener('drop', e => {
+      e.preventDefault(); uploadZone.classList.remove('dragover');
+      Array.from(e.dataTransfer.files).forEach(f => addFile(f));
+    });
+
+    function addFile(file) {
+      if (file.size > 5 * 1024 * 1024) { alert(`${file.name} exceeds 5MB limit.`); return; }
+      selectedFiles.push({ file, type: 'other' });
+      renderFiles();
+    }
+
+    function removeFile(index) { selectedFiles.splice(index, 1); renderFiles(); }
+
+    function renderFiles() {
+      fileList.innerHTML = '';
+      docTypeInputs.innerHTML = '';
+      selectedFiles.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'file-item';
+        const typeOptions = DOC_TYPES.map(t =>
+          `<option value="${t.value}" ${item.type === t.value ? 'selected' : ''}>${t.label}</option>`
+        ).join('');
+        div.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586
+                 a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <span class="file-name">${item.file.name}</span>
+          <select class="file-type-select" onchange="selectedFiles[${index}].type = this.value; renderFiles()">
+            ${typeOptions}
+          </select>
+          <button type="button" class="file-remove" onclick="removeFile(${index})">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>`;
+        fileList.appendChild(div);
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden'; hidden.name = 'document_types'; hidden.value = item.type;
+        docTypeInputs.appendChild(hidden);
+      });
+      const dt = new DataTransfer();
+      selectedFiles.forEach(item => dt.items.add(item.file));
+      fileInput.files = dt.files;
+    }
+  </script>
+
+  {% include 'loan_manager/includes/cookie_banner.html' %}
+</body>
+</html>

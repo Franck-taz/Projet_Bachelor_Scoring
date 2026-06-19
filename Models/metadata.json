@@ -1,0 +1,72 @@
+{
+    "date_entrainement": "2026-02-11 16:29",
+    "modele": "CatBoostClassifier",
+    "meilleurs_parametres": {
+        "iterations": 500,
+        "learning_rate": 0.1,
+        "depth": 8,
+        "l2_leaf_reg": 3,
+        "border_count": 128,
+        "random_seed": 42,
+        "verbose": false,
+        "class_weights": [
+            1,
+            6
+        ],
+        "eval_metric": "AUC"
+    },
+    "seuil_optimal_roc": 0.5005505684222314,
+    "features_input": [
+        "Married/Single",
+        "House_Ownership",
+        "Car_Ownership",
+        "CURRENT_HOUSE_YRS",
+        "Région",
+        "Catégorie de métier",
+        "income_per_age",
+        "married_owns_house",
+        "owns_car_high_income",
+        "age_bin",
+        "experience_bin",
+        "income_bin",
+        "cur_job_years_bin"
+    ],
+    "features_transformees": [
+        "pipeline-1__CURRENT_HOUSE_YRS",
+        "pipeline-1__income_per_age",
+        "pipeline-2__Married/Single_single",
+        "pipeline-2__House_Ownership_owned",
+        "pipeline-2__House_Ownership_rented",
+        "pipeline-2__Car_Ownership_yes",
+        "pipeline-2__Région_East India",
+        "pipeline-2__Région_North India",
+        "pipeline-2__Région_North-East India",
+        "pipeline-2__Région_South India",
+        "pipeline-2__Région_West India",
+        "pipeline-2__Catégorie de métier_Business, Finance & Administration",
+        "pipeline-2__Catégorie de métier_Creative, Design & Media",
+        "pipeline-2__Catégorie de métier_Education, Research & Documentation",
+        "pipeline-2__Catégorie de métier_Engineering",
+        "pipeline-2__Catégorie de métier_Healthcare & Medical",
+        "pipeline-2__Catégorie de métier_Hospitality & Services",
+        "pipeline-2__Catégorie de métier_IT, Data & Analytics",
+        "pipeline-2__Catégorie de métier_Law, Government & Public Service",
+        "pipeline-2__Catégorie de métier_Technology & IT",
+        "pipeline-2__married_owns_house_yes",
+        "pipeline-2__owns_car_high_income_yes",
+        "pipeline-3__age_bin",
+        "pipeline-3__experience_bin",
+        "pipeline-3__income_bin",
+        "pipeline-3__cur_job_years_bin"
+    ],
+    "variable_cible": "Risk_Flag",
+    "classes": [
+        0,
+        1
+    ],
+    "fichiers": {
+        "modele": "best_model.cbm",
+        "transformer": "column_transformer.pkl",
+        "metadata": "metadata.json"
+    }
+}
