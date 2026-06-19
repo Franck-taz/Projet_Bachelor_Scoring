@@ -31,35 +31,10 @@ from .ml.predictor import predict_risk
         OpenApiExample(
             "Example Request — Low Risk",
             value={
-                "age": 35,
-                "income": 75000,
-                "experience": 10,
-                "current_house_yrs": 5,
-                "cur_job_years": 4,
-                "marital_status": "married",
-                "house_ownership": "owned",
-                "car_ownership": "yes",
-                "region": "South India",
-                "job_category": "Engineering"
-            },
-            request_only=True,
-        ),
-        OpenApiExample(
-            "Example Response — Low Risk",
-            value={
-                "probability": 18.45,
-                "decision": "Approved"
-            },
-            response_only=True,
-            status_codes=["200"]
-        ),
-        OpenApiExample(
-            "Example Request — High Risk",
-            value={
                 "age": 22,
-                "income": 18000,
+                "income": 10000,
                 "experience": 1,
-                "current_house_yrs": 1,
+                "current_house_yrs": 0,
                 "cur_job_years": 0,
                 "marital_status": "single",
                 "house_ownership": "rented",
@@ -70,9 +45,34 @@ from .ml.predictor import predict_risk
             request_only=True,
         ),
         OpenApiExample(
+            "Example Response — Low Risk",
+            value={
+                "probability": 1.55,
+                "decision": "Approved"
+            },
+            response_only=True,
+            status_codes=["200"]
+        ),
+        OpenApiExample(
+            "Example Request — High Risk",
+            value={
+                "age": 60,
+                "income": 300000,
+                "experience": 20,
+                "current_house_yrs": 0,
+                "cur_job_years": 0,
+                "marital_status": "single",
+                "house_ownership": "rented",
+                "car_ownership": "no",
+                "region": "North-East India",
+                "job_category": "Creative, Design & Media"
+            },
+            request_only=True,
+        ),
+        OpenApiExample(
             "Example Response — High Risk",
             value={
-                "probability": 84.72,
+                "probability": 83.04,
                 "decision": "Rejected"
             },
             response_only=True,

@@ -325,16 +325,16 @@ Run the risk model on an applicant's data.
 
 ```json
 {
-  "age": 35,
-  "income": 75000,
-  "experience": 10,
-  "cur_job_years": 4,
-  "current_house_yrs": 5,
-  "marital_status": "married",
-  "house_ownership": "owned",
-  "car_ownership": "yes",
-  "region": "South India",
-  "job_category": "Engineering"
+  "age": 22,
+  "income": 10000,
+  "experience": 1,
+  "cur_job_years": 0,
+  "current_house_yrs": 0,
+  "marital_status": "single",
+  "house_ownership": "rented",
+  "car_ownership": "no",
+  "region": "North-East India",
+  "job_category": "Hospitality & Services"
 }
 ```
 
@@ -342,7 +342,7 @@ Run the risk model on an applicant's data.
 
 ```json
 {
-  "probability": 18.45,
+  "probability": 1.55,
   "decision": "Approved"
 }
 ```
