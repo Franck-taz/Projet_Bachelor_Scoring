@@ -806,7 +806,7 @@ requires-dist = [
     { name = "psycopg2-binary", specifier = ">=2.9.11" },
     { name = "python-dotenv", specifier = ">=1.2.2" },
     { name = "python-pptx", specifier = ">=1.0.2" },
-    { name = "scikit-learn", specifier = ">=1.8.0" },
+    { name = "scikit-learn", specifier = "==1.8.0" },
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "whitenoise", extras = ["brotli"], specifier = ">=6.9.0" },
 ]
