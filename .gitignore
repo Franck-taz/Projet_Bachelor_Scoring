@@ -16,3 +16,5 @@ staticfiles/
 Data/
 Notebooks/catboost_info/
 *:Zone.Identifier
+db_dump.sql
+db_dump.json
